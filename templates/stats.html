@@ -14,37 +14,43 @@
 <div class="container">
   <h3 class="mb-4">📈 Есеп беру беті</h3>
 
-
-  <!-- Экспорт батырмалары -->
-  <div class="d-flex gap-2 mb-4">
+  <div class="d-flex flex-wrap gap-2 mb-4">
     <button type="button" onclick="exportExcel()" class="btn btn-success">📥 Excel</button>
     <button type="button" onclick="downloadPDF()" class="btn btn-danger">📄 Барлық графиктер PDF</button>
   </div>
 
   <!-- Графиктер -->
-  <div class="row mb-4 stats-chart">
-    <div class="col-md-6 mb-4 chart-card">
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-6">
       <div class="card p-3 shadow-sm">
         <h5 class="text-center mb-3">📊 Жыл бойынша</h5>
-        <canvas id="yearChart"></canvas>
+        <div class="chart-container">
+          <canvas id="yearChart"></canvas>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 mb-4 chart-card">
+    <div class="col-12 col-md-6">
       <div class="card p-3 shadow-sm">
         <h5 class="text-center mb-3">🏫 Факультеттер</h5>
-        <canvas id="facultyChart"></canvas>
+        <div class="chart-container">
+          <canvas id="facultyChart"></canvas>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 mb-4 chart-card">
+    <div class="col-12 col-md-6">
       <div class="card p-3 shadow-sm">
         <h5 class="text-center mb-3">📚 Жұмыс түрі</h5>
-        <canvas id="typeChart"></canvas>
+        <div class="chart-container">
+          <canvas id="typeChart"></canvas>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 mb-4 chart-card">
+    <div class="col-12 col-md-6">
       <div class="card p-3 shadow-sm">
         <h5 class="text-center mb-3">📌 Статус</h5>
-        <canvas id="statusChart"></canvas>
+        <div class="chart-container">
+          <canvas id="statusChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
@@ -62,7 +68,6 @@
   const status_counts = {{ status_counts|tojson }};
 </script>
 
-<!-- Подключаем твои JS -->
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 <script src="{{ url_for('static', filename='js/export.js') }}"></script>
 

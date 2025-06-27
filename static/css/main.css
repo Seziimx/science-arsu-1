@@ -1,0 +1,57 @@
+/* Карточки публикаций */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Фильтры и поиск */
+.input-group input,
+.form-select {
+  font-size: 0.95rem;
+}
+
+.btn {
+  font-size: 0.95rem;
+}
+
+/* Адаптация под мобилку */
+@media (max-width: 576px) {
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .card h5 {
+    font-size: 1rem;
+  }
+
+  .input-group {
+    flex-wrap: wrap;
+  }
+
+  .input-group input {
+    flex: 1 0 100%;
+    margin-bottom: 8px;
+  }
+
+  .input-group button {
+    width: 100%;
+  }
+
+  form.row {
+    flex-direction: column;
+  }
+
+  form.row .col-md-3,
+  form.row .col-md-2,
+  form.row .col-md-1 {
+    flex: 1 0 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

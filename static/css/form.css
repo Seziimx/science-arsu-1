@@ -1,0 +1,42 @@
+form .form-label {
+  font-weight: 600;
+}
+
+form .form-control, 
+form .form-select, 
+form textarea {
+  font-size: 0.95rem;
+  padding: 8px 12px;
+}
+
+form button {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  form .form-label {
+    font-size: 0.9rem;
+  }
+
+  form .form-control, 
+  form .form-select, 
+  form textarea {
+    font-size: 0.85rem;
+    padding: 7px 10px;
+  }
+
+  form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}

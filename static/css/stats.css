@@ -7,11 +7,12 @@
 
 @media (max-width: 576px) {
   .stats-chart canvas {
-    width: 200px !important;
-    height: 200px !important;
+    width: 180px !important;
+    height: 180px !important;
   }
 }
 
+/* Анимация появления карточек */
 .chart-card {
   opacity: 0;
   transform: translateY(30px);
@@ -21,4 +22,20 @@
 .chart-card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Контейнер под график */
+.chart-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+@media (max-width: 767px) {
+  .chart-container {
+    max-width: 100%;
+  }
 }

@@ -1,14 +1,15 @@
 function exportExcel() {
   const params = new URLSearchParams();
-  const year = document.querySelector('input[name="year"]').value;
-  const faculty = document.querySelector('input[name="faculty"]').value;
-  const type = document.querySelector('input[name="type"]').value;
-  const lang = document.querySelector('select[name="lang"]').value;
 
-  if (year) params.append('year', year);
-  if (faculty) params.append('faculty', faculty);
-  if (type) params.append('type', type);
-  if (lang) params.append('lang', lang);
+  const yearInput = document.querySelector('input[name="year"]');
+  const facultyInput = document.querySelector('input[name="faculty"]');
+  const typeInput = document.querySelector('input[name="type"]');
+  const langSelect = document.querySelector('select[name="lang"]');
+
+  if (yearInput && yearInput.value) params.append('year', yearInput.value);
+  if (facultyInput && facultyInput.value) params.append('faculty', facultyInput.value);
+  if (typeInput && typeInput.value) params.append('type', typeInput.value);
+  if (langSelect && langSelect.value) params.append('lang', langSelect.value);
 
   window.location.href = '/export/excel?' + params.toString();
 }
