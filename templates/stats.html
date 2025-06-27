@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Есеп беру{% endblock %}
+
+{% block content %}
+
+<!-- Внешние библиотеки -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Подключаем CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stats.css') }}">
+
+<div class="container">
+  <h3 class="mb-4">📈 Есеп беру беті</h3>
+
+
+  <!-- Экспорт батырмалары -->
+  <div class="d-flex gap-2 mb-4">
+    <button type="button" onclick="exportExcel()" class="btn btn-success">📥 Excel</button>
+    <button type="button" onclick="downloadPDF()" class="btn btn-danger">📄 Барлық графиктер PDF</button>
+  </div>
+
+  <!-- Графиктер -->
+  <div class="row mb-4 stats-chart">
+    <div class="col-md-6 mb-4 chart-card">
+      <div class="card p-3 shadow-sm">
+        <h5 class="text-center mb-3">📊 Жыл бойынша</h5>
+        <canvas id="yearChart"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4 chart-card">
+      <div class="card p-3 shadow-sm">
+        <h5 class="text-center mb-3">🏫 Факультеттер</h5>
+        <canvas id="facultyChart"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4 chart-card">
+      <div class="card p-3 shadow-sm">
+        <h5 class="text-center mb-3">📚 Жұмыс түрі</h5>
+        <canvas id="typeChart"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4 chart-card">
+      <div class="card p-3 shadow-sm">
+        <h5 class="text-center mb-3">📌 Статус</h5>
+        <canvas id="statusChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Jinja в JS -->
+<script>
+  const year_labels = {{ year_labels|tojson }};
+  const year_counts = {{ year_counts|tojson }};
+  const faculty_labels = {{ faculty_labels|tojson }};
+  const faculty_counts = {{ faculty_counts|tojson }};
+  const type_labels = {{ type_labels|tojson }};
+  const type_counts = {{ type_counts|tojson }};
+  const status_labels = {{ status_labels|tojson }};
+  const status_counts = {{ status_counts|tojson }};
+</script>
+
+<!-- Подключаем твои JS -->
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/export.js') }}"></script>
+
+{% endblock %}

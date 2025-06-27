@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>📑 Менің жарияланымдарым</h3>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col">
+    <select name="status" class="form-select">
+      <option value="">Статус бойынша</option>
+      <option value="Қабылданды">Қабылданды</option>
+      <option value="Қайтарылды">Қайтарылды</option>
+      <option value="Қарастырылуда">Қарастырылуда</option>
+    </select>
+  </div>
+  <div class="col">
+    <input type="text" name="year" class="form-control" placeholder="Жылы">
+  </div>
+  <div class="col">
+    <button class="btn btn-primary">Сүзгілеу</button>
+  </div>
+{% if request.args.get('status') or request.args.get('year') %}
+  <div class="col">
+    <a href="{{ url_for('my_publications') }}" class="btn btn-secondary">Барлығын көру</a>
+  </div>
+{% endif %}
+</form>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Атауы</th>
+      <th>Түрі</th>
+      <th>Жылы</th>
+      <th>Статус</th>
+      <th>Scopus/WoS</th>
+      <th>Ескерту</th>
+      <th>Файл</th>
+      <th>Түзету</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pub in publications %}
+    <tr>
+      <td>{{ pub[1] }}</td>
+      <td>{{ pub[3] }}</td>
+      <td>{{ pub[2] }}</td>
+      <td>{{ pub[4] }}</td>
+      <td>{{ pub[5] or "Жоқ" }}</td>
+      <td>{{ pub[6] or "-" }}</td>
+      <td>
+        {% if pub[7] %}
+        <a href="/{{ pub[7] }}" target="_blank">Ашу</a>
+        {% else %}
+        Жоқ
+        {% endif %}
+      </td>
+      <td>
+        {% if pub[4] == "Қайтарылды" %}
+        <a href="/edit-publication/{{ pub[0] }}" class="btn btn-sm btn-warning">✏️</a>
+        {% else %}
+        -
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

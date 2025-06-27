@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}📄 Жарияланым жүктеу{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h3 class="mb-4">Жаңа жарияланым жүктеу</h3>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Атауы</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Авторлар</label>
+        <input type="text" name="author" class="form-control" placeholder="Авторларды үтірмен бөліңіз" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Факультет</label>
+        <select name="faculty" class="form-select">
+          <option>Физика-математика</option>
+          <option>Техникалық</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Жыл</label>
+        <select name="year" class="form-select">
+          <option>2024</option>
+          <option>2023</option>
+          <option>2022</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Басылым түрі</label>
+        <select name="type" class="form-select">
+          <option>Мақала</option>
+          <option>Монография</option>
+        </select>
+      </div>
+      <div class="mb-3">
+  <label class="form-label">Жұмыс тілі:</label>
+  <select name="language" class="form-select form-select-sm" required>
+    <option value="Қазақша">Қазақша</option>
+    <option value="Русский">Русский</option>
+    <option value="English">English</option>
+  </select>
+</div>
+
+      <div class="mb-3">
+        <label class="form-label">Сипаттама</label>
+        <textarea name="description" class="form-control"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Файл жүктеу</label>
+        <input type="file" name="file" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Жүктеу</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+.stats-chart canvas {
+  max-width: 220px;
+  max-height: 220px;
+  margin: 0 auto;
+  display: block;
+}
+@media (max-width: 576px) {
+  .stats-chart canvas {
+    max-width: 160px;
+    max-height: 160px;
+  }
+}

@@ -1,0 +1,24 @@
+.stats-chart canvas {
+  width: 300px !important;
+  height: 300px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .stats-chart canvas {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+.chart-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.chart-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

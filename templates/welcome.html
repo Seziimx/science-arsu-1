@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Басты бет{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h3 class="mb-4">Жарияланымдар</h3>
+
+  <!-- Іздеу жолы -->
+  <form method="GET" action="/" class="mb-3">
+    <div class="input-group">
+      <input type="text" class="form-control" name="query" placeholder="Атауы, Автор, Жылы, Кілт сөз">
+      <button class="btn btn-primary" type="submit">Іздеу</button>
+    </div>
+  </form>
+
+  <!-- Сүзгілер -->
+  <form method="GET" action="/" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <select name="faculty" class="form-select">
+        <option value="">Факультет</option>
+        <option>IT факультеті</option>
+        <option>Экономика</option>
+        <option>Физика-математика</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select name="type" class="form-select">
+        <option value="">Жұмыс түрі</option>
+        <option>Мақала</option>
+        <option>Диссертация</option>
+        <option>Монография</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select name="language" class="form-select">
+        <option value="">Жұмыс тілі</option>
+        <option>Қазақ</option>
+        <option>Орыс</option>
+        <option>Ағылшын</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <select name="year" class="form-select">
+        <option value="">Жылы</option>
+        <option>2024</option>
+        <option>2023</option>
+        <option>2022</option>
+      </select>
+    </div>
+
+    <div class="col-md-1 d-grid">
+      <button type="submit" class="btn btn-outline-primary">✔</button>
+    </div>
+  </form>
+
+  <!-- Нәтиже карталары -->
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for pub in publications %}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ pub.title }}</h5>
+          <p class="card-text">
+            <strong>Автор(лар):</strong> {{ pub.author }}<br>
+            <strong>Жылы:</strong> {{ pub.year }}<br>
+            <strong>Түрі:</strong> {{ pub.type }}<br>
+            <strong>Scopus/WoS:</strong> {{ pub.scopus_status or 'Жоқ' }}<br>
+          </p>
+          <a href="{{ pub.file_path }}" class="btn btn-sm btn-primary" download>Файлды жүктеу</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <p>Жарияланымдар табылмады.</p>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}

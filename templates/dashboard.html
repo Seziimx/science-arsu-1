@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Панель{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h3 class="mb-4">Қош келдіңіз, {{ session['username'] }}!</h3>
+
+  <div class="row g-4 mb-4">
+    <div class="col-md-6">
+      <div class="card text-white bg-warning p-3 shadow-sm text-center">
+        <h5>Факультеттер</h5>
+        <h2>{{ faculty_count if faculty_count is not none else "-" }}</h2>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <a href="https://zhubanov.edu.kz/ru/all-news/" target="_blank" style="text-decoration: none;">
+        <div class="card text-white bg-danger p-3 shadow-sm text-center">
+          <h5>Жаңалықтар</h5>
+          <h2>{{ news_count if news_count != 0 else "-" }}</h2>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <h5 class="mb-3">📅 Бүгін: {{ current_date }}</h5>
+
+  <div class="d-flex gap-3 mb-4">
+    <a href="https://zhubanov.edu.kz/ru/enrollee/category/9/" target="_blank" class="btn btn-outline-warning">🏫 Факультеттер</a>
+    <a href="https://zhubanov.edu.kz/ru/all-news/" target="_blank" class="btn btn-outline-danger">📰 Жаңалықтар</a>
+  </div>
+</div>
+{% endblock %}

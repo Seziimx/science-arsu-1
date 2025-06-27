@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Кіру | Science ARSU{% endblock %}
+
+{% block content %}
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+      <h3 class="text-center mb-4">Кіру</h3>
+      <form method="POST" action="/login">
+        <div class="mb-3">
+          <label for="login" class="form-label">Логин</label>
+          <input type="text" class="form-control" name="login" id="login" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Құпиясөз</label>
+          <input type="password" class="form-control" name="password" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Кіру</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Хабарламалар{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h3 class="mb-4">📢 Хабарламалар</h3>
+  {% if messages %}
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>📄 Атауы</th>
+          <th>📌 Статус</th>
+          <th>💬 Ескертпе</th>
+          <th>🕒 Уақыты</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for msg in messages %}
+        <tr>
+          <td>{{ msg[0] }}</td>
+          <td>
+            {% if msg[1] == 'Қабылданды' %}
+              ✅ {{ msg[1] }}
+            {% elif msg[1] == 'Қайтарылды' %}
+              ❌ {{ msg[1] }}
+            {% else %}
+              🕒 {{ msg[1] }}
+            {% endif %}
+          </td>
+          <td>{{ msg[2] if msg[2] else '—' }}</td>
+          <td>{{ msg[3] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>🚫 Хабарламалар жоқ.</p>
+  {% endif %}
+</div>
+{% endblock %}

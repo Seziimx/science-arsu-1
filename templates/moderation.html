@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Модерация{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h3 class="mb-4">📑 Жарияланымдарды модерациялау</h3>
+
+  <!-- Фильтрлер -->
+  <form method="GET" action="/moderation" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <input type="text" name="faculty" class="form-control form-control-sm" placeholder="Факультет">
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="type" class="form-control form-control-sm" placeholder="Жұмыс түрі">
+    </div>
+    <div class="col-md-2">
+      <select name="year" class="form-select">
+        <option value="">Жылы</option>
+        <option>2024</option>
+        <option>2023</option>
+        <option>2022</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select name="language" class="form-select">
+        <option value="">Жұмыс тілі</option>
+        <option>Қазақ</option>
+        <option>Орыс</option>
+        <option>Ағылшын</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select name="status" class="form-select form-select-sm">
+        <option value="">Барлығы</option>
+        <option value="Қарастырылуда">Қарастырылуда</option>
+        <option value="Қабылданды">Қабылданды</option>
+        <option value="Қайтарылды">Қайтарылды</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary btn-sm w-100">Іздеу</button>
+    </div>
+  </form>
+
+  <!-- Тізім -->
+  <table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>Атауы</th>
+        <th>Автор(лар)</th>
+        <th>Факультет</th>
+        <th>Жұмыс түрі</th>
+        <th>Жылы</th>
+        <th>Тілі</th>
+        <th>Файл</th>
+        <th>Статус</th>
+        <th>Әрекет</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pub in publications %}
+      <tr>
+        <td>{{ pub[1] }}</td>
+    <td>{{ pub[2] }}</td>
+    <td>{{ pub[7] if pub[7] else '—' }}</td>
+    <td>{{ pub[4] }}</td>
+    <td>{{ pub[3] }}</td>
+    <td>{{ pub[8] if pub[8] else '—' }}</td>  <!-- вот сюда язык -->
+    <td>
+  {% if pub[6] %}
+    <a href="/{{ pub[6] }}" target="_blank" class="btn btn-link btn-sm">Көру</a>
+  {% else %}
+    Жоқ
+  {% endif %}
+</td>
+
+        <td>
+          <span class="badge 
+            {% if pub[5] == 'Қабылданды' %} bg-success
+            {% elif pub[5] == 'Қайтарылды' %} bg-danger
+            {% else %} bg-warning text-dark
+            {% endif %}
+          ">{{ pub[5] }}</span>
+        </td>
+        <td>
+          <form method="POST" action="/moderation-action/{{ pub[0] }}" class="d-flex">
+            <input type="text" name="comment" class="form-control form-control-sm me-2" placeholder="Ескертпе">
+            <button type="submit" name="action" value="approve" class="btn btn-success btn-sm me-1">✅</button>
+            <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">❌</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if not publications %}
+    <p class="text-center text-muted">Жұмыстар табылмады.</p>
+  {% endif %}
+
+</div>
+{% endblock %}
